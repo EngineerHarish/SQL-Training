@@ -292,4 +292,15 @@
 +----------+
 1 row in set (0.00 sec)
 
-19. 
+TABLE orders
+
+1. SELECT customer_name FROM orders WHERE customer_name LIKE '%a';
++---------------+
+| customer_name |
++---------------+
+| Diana         |
+| Fiona         |
++---------------+
+2 rows in set (0.00 sec)
+
+2. 

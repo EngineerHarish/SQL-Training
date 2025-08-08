@@ -65,4 +65,74 @@
 +-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+-----------+
 20 rows in set (0.00 sec)
 
-3. 
+
+3. SELECT *,
+    -> CASE issue_type
+    -> WHEN 'Network' THEN 'Network Issue'
+    -> WHEN 'Software' THEN 'Software Issue'
+    -> WHEN 'Hardware' THEN 'Hardware Issue'
+    -> ELSE 'Other'
+    -> END AS Issue
+    -> FROM tickets;
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+----------------+
+| ticket_id | customer_name | issue_type | priority | status    | created_date | assigned_team | location      | Issue          |
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+----------------+
+|         1 | Alice         | Network    |        3 | Open      | 2025-08-01   | Network Team  | New York      | Network Issue  |
+|         2 | Bob           | Software   |        2 | Closed    | 2025-07-28   | Software Team | Chicago       | Software Issue |
+|         3 | Charlie       | Hardware   |        1 | Pending   | 2025-08-02   | Hardware Team | San Francisco | Hardware Issue |
+|         4 | Diana         | Network    |        2 | Open      | 2025-08-03   | Network Team  | New York      | Network Issue  |
+|         5 | Eve           | Software   |        3 | Closed    | 2025-07-30   | Software Team | Boston        | Software Issue |
+|         6 | Frank         | Software   |        1 | Pending   | 2025-08-04   | Software Team | Seattle       | Software Issue |
+|         7 | Grace         | Network    |        2 | Escalated | 2025-08-05   | Network Team  | Los Angeles   | Network Issue  |
+|         8 | Henry         | Hardware   |        3 | Open      | 2025-08-01   | Hardware Team | Houston       | Hardware Issue |
+|         9 | Ivy           | Network    |        1 | Closed    | 2025-07-29   | Network Team  | Chicago       | Network Issue  |
+|        10 | Jack          | Software   |        3 | Open      | 2025-08-06   | Software Team | New York      | Software Issue |
+|        11 | Kate          | Hardware   |        2 | Pending   | 2025-08-02   | Hardware Team | Boston        | Hardware Issue |
+|        12 | Leo           | Software   |        2 | Closed    | 2025-07-31   | Software Team | San Francisco | Software Issue |
+|        13 | Mona          | Network    |        3 | Escalated | 2025-08-03   | Network Team  | New York      | Network Issue  |
+|        14 | Nina          | Hardware   |        1 | Open      | 2025-08-04   | Hardware Team | Seattle       | Hardware Issue |
+|        15 | Oscar         | Software   |        3 | Pending   | 2025-08-01   | Software Team | Los Angeles   | Software Issue |
+|        16 | Paul          | Network    |        2 | Closed    | 2025-07-30   | Network Team  | Houston       | Network Issue  |
+|        17 | Queen         | Hardware   |        1 | Pending   | 2025-08-05   | Hardware Team | New York      | Hardware Issue |
+|        18 | Rita          | Software   |        2 | Open      | 2025-08-06   | Software Team | Chicago       | Software Issue |
+|        19 | Sam           | Network    |        3 | Open      | 2025-08-07   | Network Team  | Boston        | Network Issue  |
+|        20 | Tina          | Hardware   |        2 | Escalated | 2025-08-02   | Hardware Team | Seattle       | Hardware Issue |
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+----------------+
+20 rows in set (0.00 sec)
+
+4. SELECT *,
+    -> CASE
+    -> WHEN customer_name LIKE 'a%' THEN 'VIP'
+    -> WHEN customer_name LIKE 'e%' THEN 'VIP'
+    -> WHEN customer_name LIKE 'm%' THEN 'VIP'
+    -> WHEN customer_name LIKE 's%' THEN 'VIP'
+    -> ELSE 'Not VIP'
+    -> END AS Vip_Status
+    -> FROM tickets;
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+------------+
+| ticket_id | customer_name | issue_type | priority | status    | created_date | assigned_team | location      | Vip_Status |
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+------------+
+|         1 | Alice         | Network    |        3 | Open      | 2025-08-01   | Network Team  | New York      | VIP        |
+|         2 | Bob           | Software   |        2 | Closed    | 2025-07-28   | Software Team | Chicago       | Not VIP    |
+|         3 | Charlie       | Hardware   |        1 | Pending   | 2025-08-02   | Hardware Team | San Francisco | Not VIP    |
+|         4 | Diana         | Network    |        2 | Open      | 2025-08-03   | Network Team  | New York      | Not VIP    |
+|         5 | Eve           | Software   |        3 | Closed    | 2025-07-30   | Software Team | Boston        | VIP        |
+|         6 | Frank         | Software   |        1 | Pending   | 2025-08-04   | Software Team | Seattle       | Not VIP    |
+|         7 | Grace         | Network    |        2 | Escalated | 2025-08-05   | Network Team  | Los Angeles   | Not VIP    |
+|         8 | Henry         | Hardware   |        3 | Open      | 2025-08-01   | Hardware Team | Houston       | Not VIP    |
+|         9 | Ivy           | Network    |        1 | Closed    | 2025-07-29   | Network Team  | Chicago       | Not VIP    |
+|        10 | Jack          | Software   |        3 | Open      | 2025-08-06   | Software Team | New York      | Not VIP    |
+|        11 | Kate          | Hardware   |        2 | Pending   | 2025-08-02   | Hardware Team | Boston        | Not VIP    |
+|        12 | Leo           | Software   |        2 | Closed    | 2025-07-31   | Software Team | San Francisco | Not VIP    |
+|        13 | Mona          | Network    |        3 | Escalated | 2025-08-03   | Network Team  | New York      | VIP        |
+|        14 | Nina          | Hardware   |        1 | Open      | 2025-08-04   | Hardware Team | Seattle       | Not VIP    |
+|        15 | Oscar         | Software   |        3 | Pending   | 2025-08-01   | Software Team | Los Angeles   | Not VIP    |
+|        16 | Paul          | Network    |        2 | Closed    | 2025-07-30   | Network Team  | Houston       | Not VIP    |
+|        17 | Queen         | Hardware   |        1 | Pending   | 2025-08-05   | Hardware Team | New York      | Not VIP    |
+|        18 | Rita          | Software   |        2 | Open      | 2025-08-06   | Software Team | Chicago       | Not VIP    |
+|        19 | Sam           | Network    |        3 | Open      | 2025-08-07   | Network Team  | Boston        | VIP        |
+|        20 | Tina          | Hardware   |        2 | Escalated | 2025-08-02   | Hardware Team | Seattle       | Not VIP    |
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+------------+
+20 rows in set (0.00 sec)
+
+5. 

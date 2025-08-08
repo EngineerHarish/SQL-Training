@@ -135,4 +135,37 @@
 +-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+------------+
 20 rows in set (0.00 sec)
 
-5. 
+5. SELECT *,
+    -> CASE
+    -> WHEN priority= 3 THEN CONCAT('High Priority ', status)
+    -> WHEN priority= 1 THEN CONCAT('Low Priority ', status)
+    -> ELSE 'Other'
+    -> END AS Ticket_Summary
+    -> FROM tickets;
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+-------------------------+
+| ticket_id | customer_name | issue_type | priority | status    | created_date | assigned_team | location      | Ticket_Summary          |
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+-------------------------+
+|         1 | Alice         | Network    |        3 | Open      | 2025-08-01   | Network Team  | New York      | High Priority Open      |
+|         2 | Bob           | Software   |        2 | Closed    | 2025-07-28   | Software Team | Chicago       | Other                   |
+|         3 | Charlie       | Hardware   |        1 | Pending   | 2025-08-02   | Hardware Team | San Francisco | Low Priority Pending    |
+|         4 | Diana         | Network    |        2 | Open      | 2025-08-03   | Network Team  | New York      | Other                   |
+|         5 | Eve           | Software   |        3 | Closed    | 2025-07-30   | Software Team | Boston        | High Priority Closed    |
+|         6 | Frank         | Software   |        1 | Pending   | 2025-08-04   | Software Team | Seattle       | Low Priority Pending    |
+|         7 | Grace         | Network    |        2 | Escalated | 2025-08-05   | Network Team  | Los Angeles   | Other                   |
+|         8 | Henry         | Hardware   |        3 | Open      | 2025-08-01   | Hardware Team | Houston       | High Priority Open      |
+|         9 | Ivy           | Network    |        1 | Closed    | 2025-07-29   | Network Team  | Chicago       | Low Priority Closed     |
+|        10 | Jack          | Software   |        3 | Open      | 2025-08-06   | Software Team | New York      | High Priority Open      |
+|        11 | Kate          | Hardware   |        2 | Pending   | 2025-08-02   | Hardware Team | Boston        | Other                   |
+|        12 | Leo           | Software   |        2 | Closed    | 2025-07-31   | Software Team | San Francisco | Other                   |
+|        13 | Mona          | Network    |        3 | Escalated | 2025-08-03   | Network Team  | New York      | High Priority Escalated |
+|        14 | Nina          | Hardware   |        1 | Open      | 2025-08-04   | Hardware Team | Seattle       | Low Priority Open       |
+|        15 | Oscar         | Software   |        3 | Pending   | 2025-08-01   | Software Team | Los Angeles   | High Priority Pending   |
+|        16 | Paul          | Network    |        2 | Closed    | 2025-07-30   | Network Team  | Houston       | Other                   |
+|        17 | Queen         | Hardware   |        1 | Pending   | 2025-08-05   | Hardware Team | New York      | Low Priority Pending    |
+|        18 | Rita          | Software   |        2 | Open      | 2025-08-06   | Software Team | Chicago       | Other                   |
+|        19 | Sam           | Network    |        3 | Open      | 2025-08-07   | Network Team  | Boston        | High Priority Open      |
+|        20 | Tina          | Hardware   |        2 | Escalated | 2025-08-02   | Hardware Team | Seattle       | Other                   |
++-----------+---------------+------------+----------+-----------+--------------+---------------+---------------+-------------------------+
+20 rows in set (0.00 sec)
+
+6. 

@@ -115,3 +115,61 @@
 10. SELECT departments.department_name FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id WHERE employees.name IS null;
 Empty set (0.00 sec)
 
+11. SELECT employees.name, departments.department_name FROM employees RIGHT JOIN departments ON employees.department_id= departments.department_id;
++---------+-----------------+
+| name    | department_name |
++---------+-----------------+
+| Charlie | HR              |
+| Alice   | HR              |
+| Grace   | IT              |
+| Bob     | IT              |
+| David   | Finance         |
+| Frank   | Sales           |
+| NULL    | Marketing       |
++---------+-----------------+
+7 rows in set (0.00 sec)
+
+12. SELECT employees.name, departments.location FROM employees RIGHT JOIN departments ON employees.department_id= departments.department_id WHERE employees.name IS NOT NULL;
++---------+---------------+
+| name    | location      |
++---------+---------------+
+| Alice   | New York      |
+| Bob     | San Francisco |
+| Charlie | New York      |
+| David   | Chicago       |
+| Frank   | Boston        |
+| Grace   | San Francisco |
++---------+---------------+
+6 rows in set (0.00 sec)
+
+13. SELECT employees.name, departments.department_name FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id
+    -> UNION
+    -> SELECT employees.name, departments.department_name FROM employees RIGHT JOIN departments ON employees.department_id= departments.department_id;
++---------+-----------------+
+| name    | department_name |
++---------+-----------------+
+| Alice   | HR              |
+| Bob     | IT              |
+| Charlie | HR              |
+| David   | Finance         |
+| Eve     | NULL            |
+| Frank   | Sales           |
+| Grace   | IT              |
+| Hannah  | NULL            |
+| NULL    | Marketing       |
++---------+-----------------+
+9 rows in set (0.00 sec)
+
+14. SELECT employees.name, departments.department_name FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id WHERE employees.name IS null OR departments.department_name IS null
+    -> UNION
+    -> SELECT employees.name, departments.department_name FROM employees RIGHT JOIN departments ON employees.department_id= departments.department_id WHERE employees.name IS null OR departments.department_name IS null;
++--------+-----------------+
+| name   | department_name |
++--------+-----------------+
+| Eve    | NULL            |
+| Hannah | NULL            |
+| NULL   | Marketing       |
++--------+-----------------+
+3 rows in set (0.00 sec)
+
+15. 

@@ -11,4 +11,107 @@
 +---------+-----------------+
 6 rows in set (0.00 sec)
 
-2. 
+2. SELECT employees.name, departments.department_name FROM employees JOIN departments on employees.department_id= departments.department_id WHERE departments.department_name= 'IT';
++-------+-----------------+
+| name  | department_name |
++-------+-----------------+
+| Bob   | IT              |
+| Grace | IT              |
++-------+-----------------+
+2 rows in set (0.00 sec)
+
+3. SELECT employees.name, departments.location FROM employees JOIN departments on employees.department_id= departments.department_id;
++---------+---------------+
+| name    | location      |
++---------+---------------+
+| Alice   | New York      |
+| Bob     | San Francisco |
+| Charlie | New York      |
+| David   | Chicago       |
+| Frank   | Boston        |
+| Grace   | San Francisco |
++---------+---------------+
+6 rows in set (0.00 sec)
+
+4. SELECT employees.name FROM employees JOIN departments ON employees.department_id= departments.department_id WHERE location= 'New York';
++---------+
+| name    |
++---------+
+| Alice   |
+| Charlie |
++---------+
+2 rows in set (0.00 sec)
+
+5. SELECT count(employees.name), departments.department_name FROM employees JOIN departments ON employees.department_id= departments.department_id GROUP BY departments.department_name;
++-----------------------+-----------------+
+| count(employees.name) | department_name |
++-----------------------+-----------------+
+|                     2 | HR              |
+|                     2 | IT              |
+|                     1 | Finance         |
+|                     1 | Sales           |
++-----------------------+-----------------+
+4 rows in set (0.00 sec)
+
+6. SELECT employees.name, departments.department_name FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id;
++---------+-----------------+
+| name    | department_name |
++---------+-----------------+
+| Alice   | HR              |
+| Bob     | IT              |
+| Charlie | HR              |
+| David   | Finance         |
+| Eve     | NULL            |
+| Frank   | Sales           |
+| Grace   | IT              |
+| Hannah  | NULL            |
++---------+-----------------+
+8 rows in set (0.00 sec)
+
+7. SELECT * FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id WHERE department_name IS null;
++--------+--------+---------------+--------+---------------+-----------------+----------+
+| emp_id | name   | department_id | salary | department_id | department_name | location |
++--------+--------+---------------+--------+---------------+-----------------+----------+
+|      5 | Eve    |          NULL |  75000 |          NULL | NULL            | NULL     |
+|      8 | Hannah |          NULL |  62000 |          NULL | NULL            | NULL     |
++--------+--------+---------------+--------+---------------+-----------------+----------+
+2 rows in set (0.00 sec)
+
+8. SELECT departments.department_name, employees.name FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id;
++-----------------+---------+
+| department_name | name    |
++-----------------+---------+
+| HR              | Alice   |
+| IT              | Bob     |
+| HR              | Charlie |
+| Finance         | David   |
+| NULL            | Eve     |
+| Sales           | Frank   |
+| IT              | Grace   |
+| NULL            | Hannah  |
++-----------------+---------+
+8 rows in set (0.00 sec)
+
+9. SELECT employees.name, departments.department_name,
+    -> CASE
+    -> WHEN departments.department_name IS null THEN 'Unassigned'
+    -> ELSE departments.department_name
+    -> END AS Updated_dep
+    -> FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id;
++---------+-----------------+-------------+
+| name    | department_name | Updated_dep |
++---------+-----------------+-------------+
+| Alice   | HR              | HR          |
+| Bob     | IT              | IT          |
+| Charlie | HR              | HR          |
+| David   | Finance         | Finance     |
+| Eve     | NULL            | Unassigned  |
+| Frank   | Sales           | Sales       |
+| Grace   | IT              | IT          |
+| Hannah  | NULL            | Unassigned  |
++---------+-----------------+-------------+
+8 rows in set (0.00 sec)
+
+10. SELECT departments.department_name FROM employees LEFT JOIN departments ON employees.department_id= departments.department_id WHERE employees.name IS null;
+Empty set (0.00 sec)
+

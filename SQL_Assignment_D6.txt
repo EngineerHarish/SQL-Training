@@ -173,3 +173,58 @@ Empty set (0.00 sec)
 3 rows in set (0.00 sec)
 
 15. 
+
+19. SELECT * FROM employees CROSS JOIN departments;
++--------+---------+---------------+--------+---------------+-----------------+---------------+
+| emp_id | name    | department_id | salary | department_id | department_name | location      |
++--------+---------+---------------+--------+---------------+-----------------+---------------+
+|      1 | Alice   |           101 |  60000 |           105 | Marketing       | Los Angeles   |
+|      1 | Alice   |           101 |  60000 |           104 | Sales           | Boston        |
+|      1 | Alice   |           101 |  60000 |           103 | Finance         | Chicago       |
+|      1 | Alice   |           101 |  60000 |           102 | IT              | San Francisco |
+|      1 | Alice   |           101 |  60000 |           101 | HR              | New York      |
+|      2 | Bob     |           102 |  55000 |           105 | Marketing       | Los Angeles   |
+|      2 | Bob     |           102 |  55000 |           104 | Sales           | Boston        |
+|      2 | Bob     |           102 |  55000 |           103 | Finance         | Chicago       |
+|      2 | Bob     |           102 |  55000 |           102 | IT              | San Francisco |
+|      2 | Bob     |           102 |  55000 |           101 | HR              | New York      |
+|      3 | Charlie |           101 |  70000 |           105 | Marketing       | Los Angeles   |
+|      3 | Charlie |           101 |  70000 |           104 | Sales           | Boston        |
+|      3 | Charlie |           101 |  70000 |           103 | Finance         | Chicago       |
+|      3 | Charlie |           101 |  70000 |           102 | IT              | San Francisco |
+|      3 | Charlie |           101 |  70000 |           101 | HR              | New York      |
+|      4 | David   |           103 |  48000 |           105 | Marketing       | Los Angeles   |
+|      4 | David   |           103 |  48000 |           104 | Sales           | Boston        |
+|      4 | David   |           103 |  48000 |           103 | Finance         | Chicago       |
+|      4 | David   |           103 |  48000 |           102 | IT              | San Francisco |
+|      4 | David   |           103 |  48000 |           101 | HR              | New York      |
+|      5 | Eve     |          NULL |  75000 |           105 | Marketing       | Los Angeles   |
+|      5 | Eve     |          NULL |  75000 |           104 | Sales           | Boston        |
+|      5 | Eve     |          NULL |  75000 |           103 | Finance         | Chicago       |
+|      5 | Eve     |          NULL |  75000 |           102 | IT              | San Francisco |
+|      5 | Eve     |          NULL |  75000 |           101 | HR              | New York      |
+|      6 | Frank   |           104 |  52000 |           105 | Marketing       | Los Angeles   |
+|      6 | Frank   |           104 |  52000 |           104 | Sales           | Boston        |
+|      6 | Frank   |           104 |  52000 |           103 | Finance         | Chicago       |
+|      6 | Frank   |           104 |  52000 |           102 | IT              | San Francisco |
+|      6 | Frank   |           104 |  52000 |           101 | HR              | New York      |
+|      7 | Grace   |           102 |  58000 |           105 | Marketing       | Los Angeles   |
+|      7 | Grace   |           102 |  58000 |           104 | Sales           | Boston        |
+|      7 | Grace   |           102 |  58000 |           103 | Finance         | Chicago       |
+|      7 | Grace   |           102 |  58000 |           102 | IT              | San Francisco |
+|      7 | Grace   |           102 |  58000 |           101 | HR              | New York      |
+|      8 | Hannah  |          NULL |  62000 |           105 | Marketing       | Los Angeles   |
+|      8 | Hannah  |          NULL |  62000 |           104 | Sales           | Boston        |
+|      8 | Hannah  |          NULL |  62000 |           103 | Finance         | Chicago       |
+|      8 | Hannah  |          NULL |  62000 |           102 | IT              | San Francisco |
+|      8 | Hannah  |          NULL |  62000 |           101 | HR              | New York      |
++--------+---------+---------------+--------+---------------+-----------------+---------------+
+40 rows in set (0.00 sec)
+
+20. ELECT count(*) FROM employees CROSS JOIN departments;
++----------+
+| count(*) |
++----------+
+|       40 |
++----------+
+1 row in set (0.02 sec)
